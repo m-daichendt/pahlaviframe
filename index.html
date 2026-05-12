@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BT4Y25KEVJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BT4Y25KEVJ');
+</script>
+  <!-- Primary SEO -->
+  <meta name="title" content="Profile Photo Frame | Simple Online Profile Frame Tool">
+  <meta name="description" content="Create a framed profile photo in seconds. Upload your image, adjust if needed, and download — private, free, and runs entirely in your browser.">
+
+  <!-- Keywords (keep reasonable, not spammy) -->
+  <meta name="keywords" content="profile photo frame, profile frame tool, photo overlay, add profile frame, profile picture editor, online profile frame">
+
+  <!-- Author -->
+  <meta name="author" content="Profile Photo Frame">
+
+  <!-- Viewport (already likely present, but ensure it exists) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Profile Photo Frame">
+  <meta property="og:description" content="Create a framed profile photo in seconds — private, free, and runs in your browser.">
+  <meta property="og:image" content="https://freeiranframe.org/bd.png">
+  <meta property="og:url" content="https://freeiranframe.org/">
+  <meta property="og:site_name" content="Profile Photo Frame">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Profile Photo Frame">
+  <meta name="twitter:description" content="Create a framed profile photo in seconds. Private, free, and browser-based.">
+  <meta name="twitter:image" content="https://freeiranframe.org/bd.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Free Iran Photo Frame</title>
+
+  <!-- Favicon (flag) -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <style>
+    :root{
+  --bg: #f7f9fc;
+  --card: #ffffff;
+  --border: #e2e6ee;
+  --text: #1c2430;
+  --muted: #5f6b7a;
+  --accent: #2f80ed;
+  --radius: 14px;
+}
+
+body{
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.wrap{
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.content{
+  flex: 1;
+  width: 100%;
+  margin: 0;
+  padding: 24px 16px 24px;
+  box-sizing: border-box;
+}
+
+/* Tablet and up: centered at 70% width */
+@media (min-width: 768px){
+  .content{
+    width: 70%;
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 1000px;
+  }
+}
+.page > *:not(.copyright) {
+  flex-shrink: 0;
+}
+.copyright {
+  padding: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: #5f6b7a;
+  border-top: 1px solid #e2e6ee;
+  background: #ffffff;
+}
+/* Header */
+.top{
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px;
+}
+
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.logo{
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  object-fit: cover;
+}
+
+h1{
+  font-size: 20px;
+  margin: 0;
+}
+
+.subtitle{
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Layout */
+.grid{
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+@media (max-width: 900px){
+  .grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cards */
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+/* Upload area */
+.drop{
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: #fafbfe;
+}
+
+.row{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 12px;
+}
+
+input[type="file"]{
+  padding: 8px;
+}
+
+button, .toggle{
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  cursor: pointer;
+}
+
+button:hover, .toggle:hover{
+  background: #f1f4fa;
+}
+
+button:disabled{
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.note{
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Canvas */
+.canvaswrap{
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+canvas{
+  width: 100%;
+  max-width: 520px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+}
+
+/* Controls */
+.controls{
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+input[type="range"]{
+  width: 100%;
+}
+
+/* Text */
+.langTitle{
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+ul{
+  margin: 6px 0 0 18px;
+  color: var(--muted);
+}
+
+.fa{
+  direction: rtl;
+  text-align: right;
+  font-family: system-ui, "Tahoma", Arial, sans-serif;
+  color: var(--muted);
+}
+
+.hint{
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #fafbfe;
+}
+.copyright{
+  margin-top: 40px;
+  padding: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: #5f6b7a;
+  border-top: 1px solid #e2e6ee;
+  background: #ffffff;
+}
+
+/* Preview examples row */
+.previewSection {
+  margin-top: 20px;
+}
+
+.previewTitle {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.previewRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* mobile */
+  gap: 12px;
+}
+
+/* Square card */
+.previewCard {
+  position: relative;
+  aspect-ratio: 1 / 1;   /* 🔹 keeps it square */
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.previewCard img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* fills square without distortion */
+  display: block;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .previewRow {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .previewRow {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+</style>
+
+
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- Matching header banner -->
+    <header class="top">
+  <div class="brand">
+    <img src="favicon.png" alt="Flag" class="logo" />
+    <div>
+      <h1>Profile Photo Frame</h1>
+      <p class="subtitle">Upload → adjust (optional) → download</p>
+    </div>
+  </div>
+</header>
+
+  <main class="content">
+    <div class="grid">
+      <!-- Left: Instructions + Upload + Controls -->
+      <div class="card">
+        <div class="drop" id="dropZone">
+          <div class="bi">
+            <div>
+              <p class="langTitle">Instructions</p>
+              <ul>
+                <li>Choose a photo (or drag & drop it here).</li>
+                <li>Turn on <b>Move/Zoom</b> if you want to adjust your face position.</li>
+                <li>Click <b>Download</b>.</li>
+              </ul>
+            </div>
+
+            <div class="faBox fa">
+              <p class="langTitle">راهنما </p>
+              <ul>
+                <li>یک عکس انتخاب کنید (یا همین‌جا درگ و دراپ کنید).</li>
+                <li>اگر نیاز دارید جای چهره را تنظیم کنید، <b>جابجایی/زوم</b> را روشن کنید.</li>
+                <li>روی <b>دانلود</b> کلیک کنید.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row">
+            <input id="file" type="file" accept="image/*" />
+            <button id="download" disabled>Download</button>
+            <button id="reset" disabled>Reset</button>
+
+            <label class="toggle" title="Enable moving/zooming your photo">
+              <input id="editToggle" type="checkbox" />
+              Move/Zoom
+            </label>
+          </div>
+
+          <!-- Move/Zoom controls -->
+          <div class="controls" id="controls" style="display:none;">
+            <div class="controlRow">
+              <div class="sliderWrap">
+                <span style="color:var(--muted); font-size:13px;">Zoom</span>
+                <input id="zoom" type="range" min="1" max="2.5" step="0.01" value="1" />
+              </div>
+              <button id="centerBtn" type="button" disabled>Center</button>
+            </div>
+            <div class="note">
+              Drag the preview to move your photo. (Mobile: drag with finger.)<br/>
+              برای جابجایی، روی عکس در پیش‌نمایش بکشید.
+            </div>
+          </div>
+
+
+          <div class="note">
+            Tip: Your photo stays on your device (client-side). Nothing uploads anywhere.
+            <br/>
+            نکته: عکس شما جایی آپلود نمی‌شود و فقط روی مرورگر شما پردازش می‌گردد.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Preview -->
+      <div class="card">
+        <div class="canvaswrap">
+          <canvas id="c" width="1080" height="1080"></canvas>
+          <span class="pill">Preview (drag to move when Move/Zoom is ON)</span>
+        </div>
+      </div>
+    </div>
+    <!-- Preview Examples -->
+  <section class="card previewSection">
+    <h2 class="previewTitle">Preview Examples</h2>
+
+    <div class="previewRow">
+      <div class="previewCard">
+        <img src="og-preview1.png" alt="Preview example 1">
+      </div>
+      <div class="previewCard">
+        <img src="og-preview2.png" alt="Preview example 2">
+      </div>
+      <div class="previewCard">
+        <img src="og-preview3.png" alt="Preview example 3">
+      </div>
+      <div class="previewCard">
+        <img src="og-preview4.png" alt="Preview example 4">
+      </div>
+      <div class="previewCard">
+        <img src="og-preview5.png" alt="Preview example 5">
+      </div>
+    </div>
+  </section>
+
+  </main>
+  <footer class="copyright">
+    © 2026 Profile Photo Frame. All rights reserved.
+  </footer>
+
+<script>
+(() => {
+  const OVERLAY_SRC = "overlay.png";
+  console.log("Overlay loading from:", OVERLAY_SRC);
+
+
+  const canvas = document.getElementById("c");
+  const ctx = canvas.getContext("2d", { alpha: true });
+
+  const fileInput = document.getElementById("file");
+  const downloadBtn = document.getElementById("download");
+  const resetBtn = document.getElementById("reset");
+  const dropZone = document.getElementById("dropZone");
+
+  const editToggle = document.getElementById("editToggle");
+  const controls = document.getElementById("controls");
+  const zoomSlider = document.getElementById("zoom");
+  const centerBtn = document.getElementById("centerBtn");
+
+  const overlayImg = new Image();
+  overlayImg.src = OVERLAY_SRC;
+
+  // user image
+  let userImg = new Image();
+  userImg.src = "bd.png";
+
+  // transform state
+  let editEnabled = false;
+  let zoom = 1.0;
+
+  // We'll draw the image with a square crop, then apply zoom + pan within that square.
+  let cropSide = 0;
+  let cropSX = 0, cropSY = 0;
+
+  // pan offsets in canvas pixels
+  let panX = 0, panY = 0;
+
+  // dragging
+  let dragging = false;
+  let lastX = 0, lastY = 0;
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function drawPlaceholder() {
+    ctx.fillStyle = "rgba(255,255,255,0.06)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "rgba(255,255,255,0.75)";
+    ctx.font = "30px system-ui, Arial";
+    ctx.textAlign = "center";
+    ctx.fillText("Upload a photo to preview", canvas.width / 2, canvas.height / 2 - 10);
+
+    ctx.fillStyle = "rgba(255,255,255,0.55)";
+    ctx.font = "18px system-ui, Arial";
+    ctx.fillText("عکس را آپلود کنید", canvas.width / 2, canvas.height / 2 + 26);
+  }
+
+  function computeSquareCrop(img) {
+    const w = img.naturalWidth;
+    const h = img.naturalHeight;
+    cropSide = Math.min(w, h);
+    cropSX = Math.floor((w - cropSide) / 2);
+    cropSY = Math.floor((h - cropSide) / 2);
+  }
+
+  function clampPan() {
+    // When zoom > 1, the visible window is smaller, so pan is limited.
+    // We limit pan so you can't drag empty space into view.
+    // In canvas coords:
+    const maxOffset = (canvas.width * (zoom - 1)) / 2;
+    panX = Math.max(-maxOffset, Math.min(maxOffset, panX));
+    panY = Math.max(-maxOffset, Math.min(maxOffset, panY));
+  }
+
+  function drawUser(img) {
+    // We map a square crop of the source into the canvas, then apply zoom+pan
+    // by drawing a smaller/larger portion into the full canvas.
+    //
+    // Effective source region when zooming:
+    // - zoom 1.0 => use full cropSide
+    // - zoom 2.0 => use half of cropSide (more zoom-in)
+    const srcVisibleSide = cropSide / zoom;
+
+    // Convert panX/panY (canvas pixels) into source-pixel shifts within the crop square.
+    // At zoom Z, each canvas pixel represents srcVisibleSide/canvas.width source pixels.
+    const srcPerCanvasPx = srcVisibleSide / canvas.width;
+
+    const shiftX = panX * srcPerCanvasPx;
+    const shiftY = panY * srcPerCanvasPx;
+
+    // Center the visible source window, then shift by pan
+    let sx = cropSX + (cropSide - srcVisibleSide) / 2 - shiftX;
+    let sy = cropSY + (cropSide - srcVisibleSide) / 2 - shiftY;
+
+    // Clamp source window to stay inside the crop square
+    const minSX = cropSX;
+    const maxSX = cropSX + cropSide - srcVisibleSide;
+    const minSY = cropSY;
+    const maxSY = cropSY + cropSide - srcVisibleSide;
+
+    sx = Math.max(minSX, Math.min(maxSX, sx));
+    sy = Math.max(minSY, Math.min(maxSY, sy));
+
+    ctx.drawImage(
+      img,
+      sx, sy, srcVisibleSide, srcVisibleSide,
+      0, 0, canvas.width, canvas.height
+    );
+  }
+
+  function render() {
+    clearCanvas();
+
+    if (!userImg) {
+      drawPlaceholder();
+    } else {
+      drawUser(userImg);
+    }
+
+    // overlay on top
+    if (overlayImg.complete && overlayImg.naturalWidth > 0) {
+      ctx.drawImage(overlayImg, 0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  function setButtons(hasImage) {
+    downloadBtn.disabled = !hasImage;
+    resetBtn.disabled = !hasImage;
+    centerBtn.disabled = !hasImage;
+  }
+
+  function resetTransform() {
+    zoom = 1.0;
+    panX = 0;
+    panY = 0;
+    zoomSlider.value = String(zoom);
+  }
+
+  function loadFile(file) {
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("Please upload an image file.");
+      return;
+    }
+
+    const img = new Image();
+    img.onload = () => {
+      userImg = img;
+      computeSquareCrop(img);
+      resetTransform();
+      setButtons(true);
+      render();
+    };
+    img.onerror = () => alert("That file couldn't be read as an image.");
+    img.src = URL.createObjectURL(file);
+  }
+
+  // Toggle edit controls
+  editToggle.addEventListener("change", () => {
+    editEnabled = editToggle.checked;
+    controls.style.display = editEnabled ? "grid" : "none";
+  });
+
+  zoomSlider.addEventListener("input", () => {
+    zoom = parseFloat(zoomSlider.value);
+    clampPan();
+    render();
+  });
+
+  centerBtn.addEventListener("click", () => {
+    resetTransform();
+    render();
+  });
+
+  // Drag to pan (only when enabled)
+  function getPointerPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX ?? (e.touches && e.touches[0].clientX)) - rect.left;
+    const y = (e.clientY ?? (e.touches && e.touches[0].clientY)) - rect.top;
+    return { x, y };
+  }
+
+  function startDrag(e) {
+    if (!editEnabled || !userImg) return;
+    dragging = true;
+    const p = getPointerPos(e);
+    lastX = p.x;
+    lastY = p.y;
+  }
+
+  function moveDrag(e) {
+    if (!dragging || !editEnabled || !userImg) return;
+    e.preventDefault();
+
+    const p = getPointerPos(e);
+    const dx = p.x - lastX;
+    const dy = p.y - lastY;
+
+    // Convert screen dx/dy to canvas pixels proportionally
+    // because canvas might be scaled by CSS.
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    panX += dx * scaleX;
+    panY += dy * scaleY;
+
+    clampPan();
+    render();
+
+    lastX = p.x;
+    lastY = p.y;
+  }
+
+  function endDrag() {
+    dragging = false;
+  }
+
+  canvas.addEventListener("mousedown", startDrag);
+  window.addEventListener("mousemove", moveDrag);
+  window.addEventListener("mouseup", endDrag);
+
+  canvas.addEventListener("touchstart", startDrag, { passive: false });
+  window.addEventListener("touchmove", moveDrag, { passive: false });
+  window.addEventListener("touchend", endDrag);
+
+  // Initial render + overlay load
+  overlayImg.onload = render;
+  userImg.onload = () => {
+  computeSquareCrop(userImg);
+  resetTransform();
+  setButtons(false); // keep Download disabled until user uploads
+  render();
+  };
+  overlayImg.onerror = () => {
+    render();
+    alert("Could not load overlay.png. Put it next to index.html (or update OVERLAY_SRC).");
+  };
+  render();
+
+  // File picker
+  fileInput.addEventListener("change", () => {
+    const f = fileInput.files && fileInput.files[0];
+    loadFile(f);
+  });
+
+  // Download
+  downloadBtn.addEventListener("click", () => {
+    const a = document.createElement("a");
+    a.download = "profile-with-frame.png";
+    a.href = canvas.toDataURL("image/png");
+    a.click();
+  });
+
+  // Reset
+  resetBtn.addEventListener("click", () => {
+    const demo = new Image();
+    demo.onload = () => {
+      userImg = demo;
+      computeSquareCrop(demo);
+      resetTransform();
+      setButtons(false);
+      render();
+    };
+    demo.src = "demo-preview.jpg";
+    fileInput.value = "";
+  });
+
+  // Drag & drop onto drop zone
+  ["dragenter", "dragover"].forEach(evt => {
+    dropZone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropZone.style.borderColor = "rgba(255,255,255,0.45)";
+    });
+  });
+
+  ["dragleave", "drop"].forEach(evt => {
+    dropZone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropZone.style.borderColor = "rgba(255,255,255,0.25)";
+    });
+  });
+
+  dropZone.addEventListener("drop", (e) => {
+    const f = e.dataTransfer.files && e.dataTransfer.files[0];
+    loadFile(f);
+  });
+
+})();
+</script>
+</body>
+</html>
